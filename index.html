@@ -3,42 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A brief description of your webpage.">
-  <title>My Website</title>
-  <!-- Link to external CSS file -->
-  <link rel="stylesheet" href="styles.css">
+  <title>{{ project_name }}</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #222;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button {
+      background: #0969da;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0757b8;
+    }
+    #response {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #1a7f37;
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <h1>Welcome to My Website</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="card">
+    <h1>{{ project_name }}</h1>
+    <p>Both <code>app.py</code> and <code>index.html</code> are running from your root folder.</p>
 
-  <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>This is a sample paragraph introducing the main content of your page.</p>
-    </section>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <button onclick="sendName()">Send to Python</button>
 
-    <section id="services">
-      <h2>Services</h2>
-      <p>Details about what you offer go here.</p>
-    </section>
-  </main>
+    <p id="response"></p>
+  </div>
 
-  <footer>
-    <p>&copy; 2026 My Website. All rights reserved.</p>
-  </footer>
+  <script>
+    async function sendName() {
+      const name = document.getElementById('nameInput').value;
+      const res = await fetch('/greet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name })
+      });
+      const data = await res.json();
+      document.getElementById('response').textContent = data.reply;
+    }
+  </script>
 
-  <!-- Link to external JavaScript file -->
-  <script src="script.js"></script>
 </body>
 </html>
 
