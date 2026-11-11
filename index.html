@@ -1,71 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ project_name }}</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #222;
-    }
-    .card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      background: #f9f9f9;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    button {
-      background: #0969da;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0757b8;
-    }
-    #response {
-      margin-top: 15px;
-      font-weight: bold;
-      color: #1a7f37;
-    }
-  </style>
+  <title>My App</title>
 </head>
 <body>
-
-  <div class="card">
-    <h1>{{ project_name }}</h1>
-    <p>Both <code>app.py</code> and <code>index.html</code> are running from your root folder.</p>
-
-    <input type="text" id="nameInput" placeholder="Enter your name">
-    <button onclick="sendName()">Send to Python</button>
-
-    <p id="response"></p>
-  </div>
-
-  <script>
-    async function sendName() {
-      const name = document.getElementById('nameInput').value;
-      const res = await fetch('/greet', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name })
-      });
-      const data = await res.json();
-      document.getElementById('response').textContent = data.reply;
-    }
-  </script>
-
+  <h1>Hello World!</h1>
+  <p>It works.</p>
 </body>
 </html>
-
